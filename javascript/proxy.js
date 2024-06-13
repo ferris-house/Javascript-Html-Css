@@ -1,5 +1,5 @@
 // proxy基础使用
-const data = { name: 'ferris' }
+let data = { name: 'ferris' }
 
 const { proxy, revoke } = Proxy.revocable(data, {
     get: (target, key, receiver) => {
@@ -10,6 +10,11 @@ const { proxy, revoke } = Proxy.revocable(data, {
     }
 })
 
+
+
+data = proxy;
+
 revoke(); // 取消代理
 
-console.log(proxy.name) // 代理对象
+console.log(data);
+console.log(proxy); // 代理对象

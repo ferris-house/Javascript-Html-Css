@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shadowDom</title>
+    <style>
+        body {
+            background-color: rgba(0, 0, 0, .3);
+        }
+
+        /* @font-face {
+            font-family: "my-icon";
+            src: url('https://simg01.gaodunwangxiao.com/uploadfiles/files/202406/13/d617f_20240613165121.ttf?t=1682045357855') format('truetype');
+        } */
+
+        /* @font-face {
+            font-family: "my-icon";
+            src: url('../assets/iconfont.ttf?t=1682045357855') format('truetype');
+        } */
+
+        /* .iconfont {
+            font-family: "my-icon";
+            font-size: 16px;
+            font-style: normal;
+        }
+
+        .icon-auth:before {
+            margin-right: 10px;
+            font-size: 21px;
+            content: "\e606";
+        } */
+    </style>
+</head>
+
+<body>
+    <my-element></my-element>
+    <script>
+        // 在shadow dom 中@font-face引入资源无法生效
+        class MyElement extends HTMLElement {
+            constructor() {
+                super();
+                const shadow = this.attachShadow({ mode: 'open' });
+                shadow.innerHTML = `              
+                    <style>
+                        @font-face {
+                            font-family: "my-icon";
+                            src: url('https://simg01.gaodunwangxiao.com/uploadfiles/files/202406/13/d617f_20240613165121.ttf?t=1682045357855') format('truetype');
+                        }
+                        .iconfont {
+                            font-family: "my-icon";
+                            font-size: 30px;
+                            font-style: normal;
+                        }
+                        .icon-auth:before {
+                            margin-right: 10px;
+                            content: "\\e606";
+                        }
+                    </style>
+                    <div class="iconfont icon-auth"></div>
+                `;
+            }
+        }
+        customElements.define('my-element', MyElement);
+    </script>
+</body>
+
+</html>
