@@ -17,4 +17,4 @@ data = proxy;
 revoke(); // 取消代理
 
 console.log(data);
-console.log(proxy); // 代理对象
+console.log(proxy); // 代理对象1
